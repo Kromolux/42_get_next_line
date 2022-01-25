@@ -6,7 +6,7 @@
 /*   By: rkaufman <rkaufman@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 13:31:47 by rkaufman          #+#    #+#             */
-/*   Updated: 2022/01/23 21:12:26 by rkaufman         ###   ########.fr       */
+/*   Updated: 2022/01/25 11:16:07 by rkaufman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,16 +57,16 @@ static char	*ft_gnl_handling(char *buffer, int fd, char *output)
 static char	*ft_found_new_line(char *buffer, char *output)
 {
 	size_t	copy_size;
-	char	*tmp1;
+	char	*tmp;
 
 	copy_size = (ft_strchr(buffer, '\n') - buffer) + 2;
-	tmp1 = (char *) malloc(sizeof(char) * copy_size);
-	if (!tmp1)
+	tmp = (char *) malloc(sizeof(char) * copy_size);
+	if (!tmp)
 		return (NULL);
-	tmp1[0] = '\0';
-	ft_cpy(tmp1, buffer, copy_size);
-	output = ft_realloc(output, tmp1, 1, 1);
+	tmp[0] = '\0';
+	ft_copy(tmp, buffer, copy_size);
+	output = ft_realloc(output, tmp, 1, 1);
 	buffer[0] = '\0';
-	ft_cpy(buffer, &buffer[copy_size - 1], 0);
+	ft_copy(buffer, &buffer[copy_size - 1], 0);
 	return (output);
 }

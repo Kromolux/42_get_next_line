@@ -6,7 +6,7 @@
 /*   By: rkaufman <rkaufman@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 13:33:32 by rkaufman          #+#    #+#             */
-/*   Updated: 2022/01/23 21:13:47 by rkaufman         ###   ########.fr       */
+/*   Updated: 2022/01/25 11:17:32 by rkaufman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-size_t	ft_cpy(char *dst, char *src, size_t size)
+size_t	ft_copy(char *dst, char *src, size_t size)
 {
 	size_t	i;
 
@@ -78,11 +78,28 @@ char	*ft_realloc(char *dst, char *src, int free_dst, int free_src)
 	output = (char *) malloc(sizeof(char) * (dst_len + src_len + 1));
 	if (!output)
 		return (NULL);
-	i = ft_cpy(output, dst, 0);
-	ft_cpy(&output[i], src, 0);
+	i = ft_copy(output, dst, 0);
+	ft_copy(&output[i], src, 0);
 	if (free_dst)
 		free(dst);
 	if (free_src)
 		free(src);
+	return (output);
+}
+
+void	*ft_calloc(size_t size)
+{
+	void	*output;
+	size_t	i;
+
+	output = malloc(size);
+	if (!output)
+		return (NULL);
+	i = 0;
+	while (i < size)
+	{
+		((char *) output)[i] = '\0';
+		i++;
+	}
 	return (output);
 }
